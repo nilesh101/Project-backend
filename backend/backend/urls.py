@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^textword','app.views.text'),
     url(r'^keyres','app.views.keyres'),
     url(r'^textres','app.views.textres'),
+    url(r'^normalres','app.views.normalres'),
 ]

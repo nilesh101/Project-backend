@@ -59,6 +59,42 @@ def keyres(request):
 
 	return HttpResponse(temp.render(cont))
 
+
+@csrf_exempt
+def normalres(request):
+	temp = get_template('normalres.html')
+	tweet=[]
+	sentiment=[]
+	count1=0
+	count2=0
+	os.system('javac -classpath "lib/*:." SimpleStream.java')
+	var=['java -classpath' , '"lib/*:."' , 'SimpleStream']
+	command =  " ".join(var)
+	p = os.popen(command,"r")
+	count=0
+	while count<13:
+		line = p.readline()
+		if count>2:
+			if count%2==0:
+				sentiment.append(line)
+				if "Positive" in line:
+					count1+=1
+				if "Negative" in line:
+					count2+=1
+			elif count%2==1:
+				tweet.append(line)
+		count+=1
+
+	json_tweet = json.dumps(tweet)
+	json_sentiment = json.dumps(sentiment)
+
+	cont = RequestContext(request,{'tweets_array':tweet,'sent_array':sentiment,'count1':count1,'count2':count2})
+
+
+	return HttpResponse(temp.render(cont))
+
+
+
 @csrf_exempt
 def textres(request):
 	if request.method == "POST":

@@ -27,7 +27,7 @@
 </form>
 </td><td>
 <form action="normalres.html" method="post" style="padding: 0; margin: 0">
-<input type="submit" value="Dynamic Streaming" name="X2">
+<input type="submit" value="Sentiment for text" name="X2">
 </form>
 </td></tr></table>
 </center>

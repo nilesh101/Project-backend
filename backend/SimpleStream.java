@@ -13,17 +13,12 @@ public class SimpleStream  implements Runnable{
 	static int count=0;
 	public static void main(String[] args) {
 		
-		String str[]=new String[10];
-		for (String strr: args)
-		{
-			str[0]=strr;
-		}
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true);
-		cb.setOAuthConsumerKey("zrMVBrWmoVX9QJvbfPb41i326");
-		cb.setOAuthConsumerSecret("ZfVy2VRNWxs17LYvDLO2kQwl5ZwvuJFGcI460NQ1QEOYonQdTo");
-		cb.setOAuthAccessToken("2252271468-aX5sGebx8nC9q7KzLnnE3rWS6WS38l0jrg2BXS6");
-		cb.setOAuthAccessTokenSecret("CDyNSILl0NXcnhIC5xuUJtAV4zznkfufyASAWRks1QPrr");
+		cb.setOAuthConsumerKey("9JxIZemKBnnhuMTVX6zHIkV4A");
+		cb.setOAuthConsumerSecret("teEnLc5S5ciYgW5bsOkPTY6eL3jUqWekANoS2jboMRoSvVila7");
+		cb.setOAuthAccessToken("2912395186-vfIi6kTLvPROZCNFpSxSMshqh5TeR0SX2zZZ8vD");
+		cb.setOAuthAccessTokenSecret("047e5jz0o4v6369vDl0qRKaULtajYxTHxwtpnxOWGczng");
 		TwitterStream twitterStream = new TwitterStreamFactory(cb.build()).getInstance();
 		StatusListener listener = new StatusListener() {
 			@Override
@@ -84,11 +79,8 @@ public class SimpleStream  implements Runnable{
 		};
 		FilterQuery fq = new FilterQuery();
 		fq.language(new String[]{"en"});
-		//String keyword[] ={"happy"};
-		fq.track(str);
-		double [][]location ={{-122.75,36.8},{-121.75,37.8}};
+		double [][]location={{-122.75,36.8},{-121.75,37.8}};
 		fq.locations(location);
-		//fq.track();
 		twitterStream.addListener(listener);
 		twitterStream.filter(fq);  
 	}

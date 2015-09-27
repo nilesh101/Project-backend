@@ -36,7 +36,7 @@
         else
             text3=text3.fontcolor("red");
         text4=tweets[3]+"<br>"+sent[3]+"<br>";
-        if(text4=="Positive")
+	if(text4=="Positive")
             text4=text4.fontcolor("green");
         else
             text4=text4.fontcolor("red");
@@ -45,6 +45,7 @@
             text5=text5.fontcolor("green");
         else
             text5=text5.fontcolor("red");
+        text5=tweets[4]+"<br>"+sent[4]+"<br>";
                   document.getElementById("disp1").innerHTML=text1;
                   document.getElementById("disp2").innerHTML=text2;
                   document.getElementById("disp3").innerHTML=text3;
@@ -84,6 +85,5 @@
                 });
     </script>
 </center>
-</body>
-
+</body>	
 </html>
