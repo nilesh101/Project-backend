@@ -87,7 +87,7 @@ def normalres(request):
 					sentiment.append("No keyword found")
 			elif count%2==1:
 				tweet.append(line)
-		
+		count+=1
 
 	json_tweet = json.dumps(tweet)
 	json_sentiment = json.dumps(sentiment)
