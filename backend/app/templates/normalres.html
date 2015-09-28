@@ -3,48 +3,34 @@
 <html>
 <head>
     {% load staticfiles %}
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<link rel="stylesheet" href="/home/prathamsh/Final/style5.css">
+<link rel="stylesheet" href="{% static '/static/style5.css' %}">
 </head>
 <body>
 <center>
-    <h2>Tweets containing the entered keyword are as follows:</h2>    
-    <div id="disp1" style="width:500px;height:100px;border:1px solid #000;"></div> <br>
-    <div id="disp2"  style="width:500px;height:100px;border:1px solid #000;"></div><br>
-    <div id="disp3"  style="width:500px;height:100px;border:1px solid #000;"></div><br>
-    <div id="disp4"  style="width:500px;height:100px;border:1px solid #000;"></div><br>
-    <div id="disp5"  style="width:500px;height:100px;border:1px solid #000;"></div><br>
+    <h2>Tweets containing the entered keyword are as follows:</h2>   
+    <br> 
+    <div id="disp1" style="width:1080px;height:125px;border:1px solid #000;color:#75D1FF;background-color:black;outline: none !important;border:2px;box-shadow: 0 0 10px #75D1FF;"></div> <br>
+    <div id="disp2"  style="width:1080px;height:125px;border:1px solid #000;color:#75D1FF;background-color:black;outline: none !important;border:2px;box-shadow: 0 0 10px #75D1FF;"></div><br>
+    <div id="disp3"  style="width:1080px;height:125px;border:1px solid #000;color:#75D1FF;background-color:black;outline: none !important;border:2px;box-shadow: 0 0 10px #75D1FF;"></div><br>
+    <div id="disp4"  style="width:1080px;height:125px;border:1px solid #000;color:#75D1FF;background-color:black;outline: none !important;border:2px;box-shadow: 0 0 10px #75D1FF;"></div><br>
+    <div id="disp5"  style="width:1080px;height:125px;border:1px solid #000;color:#75D1FF;background-color:black;outline: none !important;border:2px;box-shadow: 0 0 10px #75D1FF;"></div><br>
     <script>
     var tweets = {{ tweets_array|safe }};
     var sent = {{ sent_array|safe }};
     var i=0;
     var text1='';text2='';text3='';text4='';text5='';
-        text1=tweets[0]+"<br>"+sent[0]+"<br>";
-        if(sent[0]=="Positive")
-            text1=text1.fontcolor("green");
-        else
-            text1=text1.fontcolor("red");
-        text2=tweets[1]+"<br>"+sent[1]+"<br>";
-        if(sent[1]=="Positive")
-            text2=text2.fontcolor("green");
-        else
-            text2=text2.fontcolor("red");
-        text3=tweets[2]+"<br>"+sent[2]+"<br>";
-        if(sent[2]=="Positive")
-            text3=text3.fontcolor("green");
-        else
-            text3=text3.fontcolor("red");
-        text4=tweets[3]+"<br>"+sent[3]+"<br>";
-	if(sent[3]=="Positive")
-            text4=text4.fontcolor("green");
-        else
-            text4=text4.fontcolor("red");
-        text5=tweets[4]+"<br>"+sent[4]+"<br>";
-        if(sent[4]=="Positive")
-            text5=text5.fontcolor("green");
-        else
-            text5=text5.fontcolor("red");
+        text1=tweets[0]+"<br><br>"+sent[0];
+        
+        text2=tweets[1]+"<br><br>"+sent[1];
+        
+        text3=tweets[2]+"<br><br>"+sent[2];
+        
+        text4=tweets[3]+"<br><br>"+sent[3];
+        
+        text5=tweets[4]+"<br><br>"+sent[4];
+        
                   document.getElementById("disp1").innerHTML=text1;
                   document.getElementById("disp2").innerHTML=text2;
                   document.getElementById("disp3").innerHTML=text3;
@@ -55,10 +41,14 @@
             
    // document.getElementById("disp").innerHTML='This is keyword {{ abc }}';
     </script>
-    <button class="btn">Graphical view</button>
     <br>
-    <div id="piechart" style="width: 500px; height: 500px; " class="piechart"></div>
-    <script>
+    <br>
+    <button class="btn" style="color:#75D1FF;background-color:black;outline: none !important;border:2px;box-shadow: 0 0 10px #75D1FF;font-size:23px;">Graphical view</button>
+    <br>
+    <br>
+    <br>
+    <div id="piechart" style="width: 500px; height: 500px;margin-left:110px " class="piechart"></div>
+    <script type="text/javascript">
         $(document).ready(function(){
             $(".btn").click(function(){
                 google.load("visualization", "1", {packages:["corechart"], "callback": drawChart});
@@ -66,15 +56,16 @@
                     function drawChart() {
                         var pos=parseInt({{ count1 }});
                         var neg=parseInt({{ count2 }});
-                        var data = google.visualization.arrayToDataTable([
+            var data = google.visualization.arrayToDataTable([
                         ['Sentiment', 'per 20 tweets'],
                         ['Positive', pos],
                         ['Negative', neg],
                         ]);
                         var options = {
                         is3D: true,
-                        legend: {position: 'top', textStyle: {color: 'black', fontSize: 16}}
-                        /*backgroundColor: #000033*/
+                        legend: {position: 'top', textStyle: {color: 'white', fontSize: 16}},
+                        backgroundColor: '#000000',
+            
                         };
 
                         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -84,5 +75,6 @@
                 });
     </script>
 </center>
-</body>	
+</body>
+
 </html>

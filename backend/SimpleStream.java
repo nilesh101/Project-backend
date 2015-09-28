@@ -15,10 +15,10 @@ public class SimpleStream  implements Runnable{
 		
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true);
-		cb.setOAuthConsumerKey("9JxIZemKBnnhuMTVX6zHIkV4A");
-		cb.setOAuthConsumerSecret("teEnLc5S5ciYgW5bsOkPTY6eL3jUqWekANoS2jboMRoSvVila7");
-		cb.setOAuthAccessToken("2912395186-vfIi6kTLvPROZCNFpSxSMshqh5TeR0SX2zZZ8vD");
-		cb.setOAuthAccessTokenSecret("047e5jz0o4v6369vDl0qRKaULtajYxTHxwtpnxOWGczng");
+		cb.setOAuthConsumerKey("8CSnmYzVOrEW8cigSjOwEICW4");
+		cb.setOAuthConsumerSecret("eJuTa1dju6bk5Q6d1zEzl8L1huvVZsCtwNNTTZK11ehCrdHex9");
+		cb.setOAuthAccessToken("3660624494-teCy48iUfFava5NswVmER7CtqX9MNd5AdCzYvYx");
+		cb.setOAuthAccessTokenSecret("g8wQlHEe4HkotUGx3p3iMfZIC1MfvGrvanoQI3l2zqBpI");
 		TwitterStream twitterStream = new TwitterStreamFactory(cb.build()).getInstance();
 		StatusListener listener = new StatusListener() {
 			@Override

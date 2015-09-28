@@ -32,8 +32,7 @@ def keyres(request):
 	sentiment=[]
 	count1=0
 	count2=0
-	os.system('javac -classpath "lib/*:." SimpleStream.java')
-	var=['java -classpath' , '"lib/*:."' , 'SimpleStream']
+	var=['java -classpath' , '"lib/*:."' , 'SimpleStream2']
 	var.append(m)
 	command =  " ".join(var)
 	p = os.popen(command,"r")
@@ -42,11 +41,14 @@ def keyres(request):
 		line = p.readline()
 		if count>2:
 			if count%2==0:
-				sentiment.append(line)
 				if "Positive" in line:
 					count1+=1
-				if "Negative" in line:
+					sentiment.append(line)
+				elif "Negative" in line:
 					count2+=1
+					sentiment.append(line)
+				else:
+					sentiment.append("No keyword found")
 			elif count%2==1:
 				tweet.append(line)
 		count+=1
@@ -54,7 +56,7 @@ def keyres(request):
 	json_tweet = json.dumps(tweet)
 	json_sentiment = json.dumps(sentiment)
 
-	cont = RequestContext(request,{'tweets_array':tweet,'sent_array':sentiment,'count1':count1,'count2':count2})
+	cont = RequestContext(request,{'tweets_array':json_tweet,'sent_array':json_sentiment,'count1':count1,'count2':count2})
 
 
 	return HttpResponse(temp.render(cont))
@@ -67,7 +69,6 @@ def normalres(request):
 	sentiment=[]
 	count1=0
 	count2=0
-	os.system('javac -classpath "lib/*:." SimpleStream.java')
 	var=['java -classpath' , '"lib/*:."' , 'SimpleStream']
 	command =  " ".join(var)
 	p = os.popen(command,"r")
@@ -76,19 +77,22 @@ def normalres(request):
 		line = p.readline()
 		if count>2:
 			if count%2==0:
-				sentiment.append(line)
 				if "Positive" in line:
 					count1+=1
-				if "Negative" in line:
+					sentiment.append(line)
+				elif "Negative" in line:
 					count2+=1
+					sentiment.append(line)
+				else:
+					sentiment.append("No keyword found")
 			elif count%2==1:
 				tweet.append(line)
-		count+=1
+		
 
 	json_tweet = json.dumps(tweet)
 	json_sentiment = json.dumps(sentiment)
 
-	cont = RequestContext(request,{'tweets_array':tweet,'sent_array':sentiment,'count1':count1,'count2':count2})
+	cont = RequestContext(request,{'tweets_array':json_tweet,'sent_array':json_sentiment,'count1':count1,'count2':count2})
 
 
 	return HttpResponse(temp.render(cont))
